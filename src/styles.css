@@ -19,6 +19,13 @@
   text-rendering: optimizeLegibility;
 }
 
+.hero-name {
+  font-size: clamp(4.5rem, 9vw, 5.6rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
 * {
   box-sizing: border-box;
 }

@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
+import SplitName from "./components/SplitText";
+import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   BadgeCheck,
@@ -145,11 +147,11 @@ const achievements = [
   },
   {
     icon: Code2,
-    text: "Active problem solver on LeetCode and HackerRank",
+    text: "Active problem solver",
   },
   {
     icon: UsersRound,
-    text: "Coordinated and volunteered in several campus and state-level events",
+    text: "Coordinated and volunteered in several campus events",
   },
 ];
 
@@ -238,7 +240,10 @@ function App() {
       <Sparkles size={14} />
       CSE Student · Builder · Community Volunteer
     </p>
-    <h1>Krishnaveni P</h1>
+    <SplitName
+  text="Krishnaveni P"
+  className="hero-name"
+/>
     <p className="hero-text">
       Second-year CSE student at MACE Kothamangalam — building across full stack web,
       applied AI, DSA, and community tech through GDG On Campus and hackathons.
@@ -316,7 +321,21 @@ function App() {
 
           <div className="project-list">
             {projects.map((project, index) => (
-              <article className="project-row" key={project.title}>
+  <motion.article
+    className="project-row"
+    key={project.title}
+    initial={{ opacity: 0, y: 60 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{
+      duration: 0.6,
+      delay: index * 0.1,
+    }}
+    whileHover={{
+      y: -8,
+      transition: { duration: 0.2 },
+    }}
+  >
                 <div className="project-number">{String(index + 1).padStart(2, "0")}</div>
                 <div className="project-image">
                   <img src={project.image} alt="" />
@@ -338,7 +357,7 @@ function App() {
                 <a className="project-link" href={project.link} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}>
                   <ArrowUpRight size={18} />
                 </a>
-              </article>
+              </motion.article>
             ))}
           </div>
         </section>
@@ -351,7 +370,16 @@ function App() {
             {experience.map((item) => {
               const Icon = item.icon;
               return (
-                <article className="timeline-item" key={item.title}>
+                <motion.article
+  className="timeline-item"
+  key={item.title}
+  initial={{ opacity: 0, x: -40 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{
+    duration: 0.5,
+  }}
+>
                   <div className="timeline-marker">
                     <Icon size={17} />
                   </div>
@@ -363,7 +391,7 @@ function App() {
                     <h3>{item.title}</h3>
                     <p>{item.detail}</p>
                   </div>
-                </article>
+                </motion.article>
               );
             })}
           </div>
